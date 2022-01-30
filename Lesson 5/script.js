@@ -2,30 +2,28 @@ function isNumber(n) {
     return typeof n === "number" && !Number.isNaN(n);
 }
 
-const p = 3.14;
-
 console.log ("-------[ MISSION 1 ]-------");
 
-function calcCircleArea(p, r = 5) {
-    if (isNumber(p) && isNumber(r)) {
-        return (p * r**2);
+function calcCircleArea(r) {
+    if (isNumber(r)) {
+        return (Math.PI * r**2);
     }
     return "INVALID DATA";
 }
 
-console.log ("Площадь круга = ", calcCircleArea(p));
+console.log ("Площадь круга = ", calcCircleArea(5));
 
 console.log ("-------[ MISSION 2 ]-------");
 
-function calcCircumference(p, r = 7) {
+function calcCircumference(r ) {
     
-    if (isNumber(p) && isNumber(r)) {
-        return (2 * p * r);
+    if (isNumber(r)) {
+        return (2 * Math.PI * r);
     }
     return "INVALID DATA";
 }
 
-console.log ("Длина окружности = ", calcCircumference(p));
+console.log ("Длина окружности = ", calcCircumference(7));
 
 console.log ("-------[ MISSION 3 ]-------");
 
@@ -41,15 +39,22 @@ console.log ("Среднее арифметическое двух чисел = 
 
 console.log ("-------[ MISSION 4 ]-------");
 
-function calcReminder(i, j) {
-    return i % j; 
-} 
+function calc(x, y, action) {
 
-function calc(x, y, action = "%") { 
-    const result = action(x, y);
-    console.log("x % y = ", result) 
+    if (typeof action === "string" && !Number.isNaN(x, y) && isNumber (x, y)) {
+        console.log (`${x} ${action} ${y} = `);  
+        return eval (x + (action) + y);
+    }
+    return "INVALID DATA";
+
 }
 
-calc(150, 20, calcReminder);
+console.log (calc(10, 2, "+")); 
+console.log (calc(10, 2, "-"));
+console.log (calc(10, 2, "*"));
+console.log (calc(10, 2, "/"));
+console.log (calc(10, 2, "%"));
+console.log (calc(10, 2, "**")); 
+
 
 
