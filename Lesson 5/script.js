@@ -41,12 +41,31 @@ console.log ("-------[ MISSION 4 ]-------");
 
 function calc(x, y, action) {
 
-    if (typeof action === "string" && !Number.isNaN(x, y) && isNumber (x, y)) {
-        console.log (`${x} ${action} ${y} = `);  
-        return eval (x + (action) + y);
-    }
-    return "INVALID DATA";
-
+    console.log (`${x} ${action} ${y} = `);
+    
+    switch (action) {
+        case "+": 
+        return x + y;
+        break;
+        case "-": 
+        return x - y;
+        break;
+        case "*": 
+        return x * y;
+        break;
+        case "/": 
+        return x / y;
+        break;
+        case "%": 
+        return x % y;
+        break;
+        case "^": 
+        return x ** y;
+        break;
+        default: 
+        console.log ("Enter one of the options: +, -, *, /, % or ^");
+    }    
+    
 }
 
 console.log (calc(10, 2, "+")); 
@@ -54,7 +73,4 @@ console.log (calc(10, 2, "-"));
 console.log (calc(10, 2, "*"));
 console.log (calc(10, 2, "/"));
 console.log (calc(10, 2, "%"));
-console.log (calc(10, 2, "**")); 
-
-
-
+console.log (calc(10, 2, "^")); 
