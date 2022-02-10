@@ -95,5 +95,3 @@ function countLetters (str, obj) {
 countLetters (string, letterCountObj);
 console.log (string);
 console.log (letterCountObj);
-
-
