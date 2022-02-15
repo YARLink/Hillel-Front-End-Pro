@@ -57,10 +57,10 @@ function calcObjKeys(obj) {
 
 function isEqual(a, b) {
 
-    if (typeof a, b === "object" && a, b !== null && calcObjKeys(a) === calcObjKeys(b)) {
+    if (calcObjKeys(a) === calcObjKeys(b)) {
 
         for (let key in b) {
-            const bothObj = typeof(a[key], b[key]) === "object";            
+            const bothObj = typeof(a[key]) === "object" && typeof(b[key]) === "object";            
             if ((a[key] !== b[key] && !bothObj) || (bothObj && !isEqual(a[key], b[key]))) {
                 return false;
             }  
@@ -86,11 +86,7 @@ function countLetters(str) {
         let key = str[i];
         obj[key] ? obj[key]++ : obj[key] = 1;
     }
-
-    for (let key in obj) {
-        return obj;
-    }
-
+    return obj;
 }
 
 console.log(string);
