@@ -1,6 +1,6 @@
-"use strict";
+"use strict"
 
-console.log ("-------[ MISSION 1 ]-------");
+console.log("-------[ MISSION 1 ]-------");
 
 const origin = {
     name: "Ozzy",
@@ -18,12 +18,12 @@ function copy (target, origin) {
     return target;
 }
 
-console.log ("origin {}; BEFORE", origin);
-console.log ("target {}; BEFORE", target);
-console.log ("copy (target, origin) ", copy (target, origin));
-console.log ("target {}; AFTER", target);
+console.log("origin {}; BEFORE", origin);
+console.log("target {}; BEFORE", target);
+console.log("copy (target, origin) ", copy (target, origin));
+console.log("target {}; AFTER", target);
 
-console.log ("-------[ MISSION 2 ]-------");
+console.log("-------[ MISSION 2 ]-------");
 
 let a = {
     name: "Peter",
@@ -55,9 +55,9 @@ function calcObjKeys(obj) {
     return count;
 }
 
-function isEqual (a, b) {
+function isEqual(a, b) {
 
-    if (typeof a, b === Object && a, b !== null && calcObjKeys(a) === calcObjKeys(b)) {
+    if (typeof a, b === "object" && a, b !== null && calcObjKeys(a) === calcObjKeys(b)) {
 
         for (let key in b) {
             const bothObj = typeof(a[key], b[key]) === "object";            
@@ -67,19 +67,20 @@ function isEqual (a, b) {
         }
         return true;
     } 
+    return false;
 }
 
-console.log (a);
-console.log (b); 
-console.log ("a === b ", isEqual(a, b));
+console.log(a);
+console.log(b); 
+console.log("a === b ", isEqual(a, b));
 
-console.log ("-------[ MISSION 3 ]-------");  
+console.log("-------[ MISSION 3 ]-------");  
 
 let string = "dghsyreirkvmncbxkziodhfhytjvafsraagbbch";
-let letterCountObj = {};
 
-function countLetters (str, obj) {
+function countLetters(str) {
 
+    const obj = {};
     for (let i = 0; i < str.length; i++) {
 
         let key = str[i];
@@ -89,11 +90,8 @@ function countLetters (str, obj) {
     for (let key in obj) {
         return obj;
     }
-    
+
 }
 
-countLetters (string, letterCountObj);
-console.log (string);
-console.log (letterCountObj);
-
-
+console.log(string);
+console.log(countLetters(string));
