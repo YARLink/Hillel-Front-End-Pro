@@ -1,14 +1,25 @@
+"use strict"
+
+function isObject(obj) {
+    return typeof obj === "object" && obj !== null && !Array.isArray(obj); 
+}
+
 function copy(data) {
 
-    if(typeof data === "object" && data !== null) {
-        let copyData = Array.isArray(data) ? [] : {};
+    let copyData = {};
+    if(isObject(data)) {
         for(const key in data) {
             copyData[key] = copy(data[key]); 
         }
-        return copyData;
+    } else if(Array.isArray(data)){
+        copyData = [];
+        for(let i = 0; i < data.length; i++){
+            copyData[i] = copy(data[i]);
+        }
     } else {
         return data;
-    }   
+    } 
+    return copyData; 
 };
 
 let passport = {
