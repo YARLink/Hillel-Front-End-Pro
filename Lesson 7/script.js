@@ -4,14 +4,12 @@ console.log("-------[ MISSION 1 ]-------");
 
 function isSymbolPresentInString(str, symbol) {
 
-    let result = false;
     for (let key of str) {
         if(symbol === key) {
-            result = true;
-            break; 
-        }           
+            return true;
+        }
+        return false;           
     }
-    return result;
 }
 
 console.log("isSymbolPresentInString(\"abc\",\"a\") //",isSymbolPresentInString("abc", "a"));
@@ -21,14 +19,12 @@ console.log("-------[ MISSION 2 ]-------");
 
 function getSymbolIndex(string, symb) {
 
-    let res = -1;
-    for(let key in string) {
-        if(symb === string[key]) {
-            res = +key;
-            break;
+    for(let i = 0; i <= string.length; i++) {
+        if(symb === string[i]) {
+            return i;
         }
     }
-    return res
+    return -1;
 }
 
 console.log("getSymbolIndex(\"hello lol\",\"h\") //", getSymbolIndex("hello lol", "h"));
@@ -73,10 +69,8 @@ function customMap(array, callback) {
 
     const newNumbs = [];
     for (let i = 0; i < array.length; i++) {
-        newNumbs[i] = callback(array[i], i, array);
+        newNumbs.push(callback(array[i], i, array));
     }
-    console.log("const numbs =", array);
-    console.log("const newNumbs =", newNumbs);
 }
     
 function createNewArr(item) {
@@ -97,8 +91,6 @@ function customFilter(array, callback) {
             newUniversities.push(array[i]);
         }
     }
-    console.log("const universities", array);
-    console.log("const newUniversities", newUniversities);
 }
 
 function getResultOfCheck(item) {
@@ -115,15 +107,12 @@ console.log("-------[ some ]-------");
 
 function customSome(array, callback) {
     
-    let result = false;
     for (let i = 0; i < array.length; i++) {     
         if(callback(array[i])){
-            result = true;
-            console.log(`(${array[i]} % 3 === 0) ===`, result);
-            break;
+            return true;
         }
     }
-    console.log("some array[i] % 3 === 0", result, array);
+    return false;
 }
 
 function isMultipleOfThree(item) {
@@ -137,14 +126,12 @@ console.log("-------[ every ]-------");
 
 function customEvery(array, callback) {
     
-    let result = true;
     for (let i = 0; i < array.length; i++) {     
         if(!callback(array[i])){
-            result = false;
-            console.log(`(${array[i]} % 2 !== 0) ===`, result);
+            return false;
         }
     }
-    console.log("every array[i] % 2 === 0", result, array);
+    return true;
 }
 
 function isEven(item) {
