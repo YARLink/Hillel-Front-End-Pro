@@ -2,7 +2,7 @@
 
 const body = document.querySelector("body");
 
-function Wrapper (name) {
+function createWrapper (name) {
     const wrapperName = document.createElement("div");
     const squareWrapperHeader = document.createElement("h2");
     squareWrapperHeader.innerText = (name);
@@ -23,7 +23,7 @@ function createSquares() {
 
 // 1.________________________________________________________________________________
 
-let squareWrapperNumber = new Wrapper("MISSION 1");
+let squareWrapperNumber = createWrapper("MISSION 1");
 
 function setSquareNumber() {
 
@@ -49,7 +49,7 @@ setSquareNumber();
 
 // // 1a._____________________________________________________________________________
 
-let squareWrapperNumberCounter = new Wrapper("MISSION 1a");
+let squareWrapperNumberCounter = createWrapper("MISSION 1a");
 
 function setSquareNumberCounter() {
 
@@ -94,7 +94,7 @@ setSquareNumberCounter();
 
 // // 2._________________________________________________________________________________
 
-let squareWrapperColor = new Wrapper("MISSION 2");
+let squareWrapperColor = createWrapper("MISSION 2");
 
 const colors = ["blue", "green", "yellow"];
 
@@ -126,7 +126,7 @@ setSquaresColor();
 
 // // 3._____________________________________________________________________________
 
-let squareWrapperList = new Wrapper("MISSION 3");
+let squareWrapperList = createWrapper("MISSION 3");
 squareWrapperList.classList.add("listWrapper");
 
 function generateList (children, parent) {
