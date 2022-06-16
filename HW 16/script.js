@@ -17,32 +17,20 @@ wrapper.append(content, loadButton);
 
 const url = new URL("https://rickandmortyapi.com/api/character");
 
-let currentPageUrl = 1;
-let lastPage;
-
-function getLastPage(data) {
-  data.then((page) => {
-    lastPage = page.info.pages;
-  });
-};
+let currentPageUrl = 0;
 
 function setCurrentPage(pageUrl) {
   url.searchParams.set("page", `${pageUrl}`);
-  if (pageUrl >= lastPage) {
-    loadButton.disabled = true;
-  };
 };
 
-function renderList(items) {
+function renderList(res) {
   const ol = document.createElement("ol");
+  
+  res.results.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item.name;
 
-  items.then((data) => {
-    data.results.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item.name;
-
-      ol.appendChild(li);
-    });
+    ol.appendChild(li);
   });
 
   content.innerHTML = "";
@@ -52,47 +40,38 @@ function renderList(items) {
 function setButtonLoadingState() {
   loadButton.textContent = "Loading...";
   loadButton.disabled = true;
-  setCurrentPage(currentPageUrl);
 };
 
 function setButtonInitialState() {
   loadButton.textContent = "Load";
   loadButton.disabled = false;
-  setCurrentPage(currentPageUrl);
-};
-
-function setLoadingParams() {
-  load({
-    url: url,
-    onLoadStart: setButtonLoadingState,
-    onLoadSuccess: (data) => {
-      renderList(data);
-      getLastPage(data);
-      setButtonInitialState();
-    },
-    onLoadError: () => {
-      setButtonInitialState();
-    },
-  });
 };
 
 loadButton.addEventListener("click", () => {
   currentPageUrl++;
-
   setCurrentPage(currentPageUrl);
-  setLoadingParams();
+  setButtonLoadingState();
+
+  load()
+  .then(data => {
+    renderList(data);
+    if(data.info.next === null) {
+      loadButton.disabled = true;
+    }
+  })
+  .catch(error => new Error(error))
 });
 
-function load(props) {
-  return fetch(props.url).then((response) => {
-    props.onLoadStart();
-    setTimeout(() => {
+function load() {
+  return fetch(url)
+    .then((response) => {
       if (response.ok) {
-        props.onLoadSuccess(response.json());
-        return response.json;
+        return response.json();
       }
-      const error = new Error(`Error loading page ${currentPageUrl}`);
-      return Promise.reject(error);
-    }, 1000);
-  });
+      throw new Error(response);
+    })
+    .catch((error) => reject(error))
+    .finally(() => {
+      setButtonInitialState();
+    });
 };
