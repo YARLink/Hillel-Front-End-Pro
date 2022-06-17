@@ -54,12 +54,14 @@ loadButton.addEventListener("click", () => {
 
   load()
   .then(data => {
-    renderList(data);
+    renderList(data)
     if(data.info.next === null) {
       loadButton.disabled = true;
     }
   })
-  .catch(error => new Error(error))
+  .catch(error => new Error(error));
+
+  setButtonInitialState();
 });
 
 function load() {
@@ -70,8 +72,6 @@ function load() {
       }
       throw new Error(response);
     })
-    .catch((error) => reject(error))
-    .finally(() => {
-      setButtonInitialState();
-    });
+    .catch((error) => new Error(error))
+    .finally(() => console.log("Done"));
 };
